@@ -13,3 +13,8 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [ ] Set up database
 - [ ] set up auth
 - [ ] set up folder navigation
+
+## notes
+
+left off cleaning up eslint errors for drizzle typing. Need to remove the test model
+and create models for files.
