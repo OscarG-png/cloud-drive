@@ -10,7 +10,9 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 
 ## TODO list:
 
-- [ ] Set up database
+- [x] Set up database
+- [x] set up datamodels
+- [ ] move folder state to url
 - [ ] set up auth
 - [ ] set up folder navigation
 
