@@ -46,8 +46,8 @@ export function FolderRow(props: {
             {folder.name}
           </button>
         </div>
-        <div className="col-span-3 text-gray-400"></div>
-        <div className="col-span-3 text-gray-400"></div>
+        <div className="col-span-3 text-gray-400">{"folder"}</div>
+        <div className="col-span-3 text-gray-400">{"--"}</div>
       </div>
     </li>
   );
