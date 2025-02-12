@@ -16,9 +16,9 @@ export const files = createTable(
     id: bigint("id", { mode: "number", unsigned: true })
       .primaryKey()
       .autoincrement(),
-    name: text("name"),
-    size: int("size"),
-    url: text("url"),
+    name: text("name").notNull(),
+    size: int("size").notNull(),
+    url: text("url").notNull(),
     parent: bigint("parent", { mode: "number", unsigned: true }).notNull(),
   },
   (t) => {
