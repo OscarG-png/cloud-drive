@@ -7,6 +7,7 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - Nextjs
 - Tailwind
 - Shadcn
+- SingleStore
 
 ## TODO list:
 
