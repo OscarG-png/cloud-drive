@@ -13,11 +13,11 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 
 - [x] Set up database
 - [x] set up datamodels
-- [ ] move folder state to url
+- [x] move folder state to url
+- [x] set up folder navigation
 - [ ] set up auth
-- [ ] set up folder navigation
+- [ ] set up real homepage
 
 ## notes
 
-left off cleaning up eslint errors for drizzle typing. Need to remove the test model
-and create models for files.
+minimized data access layer
