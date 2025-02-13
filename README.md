@@ -16,7 +16,9 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] move folder state to url
 - [x] set up folder navigation
 - [x] set up auth
-- [ ] set up real homepage
+- [ ] add ownership of files and folders
 - [ ] upload files to correct folder
 - [ ] delete file button
 - [ ] allows other files, not just images.
+- [ ] analytics
+- [ ] set up real homepage.
