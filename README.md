@@ -15,9 +15,8 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] set up datamodels
 - [x] move folder state to url
 - [x] set up folder navigation
-- [ ] set up auth
+- [x] set up auth
 - [ ] set up real homepage
-
-## notes
-
-minimized data access layer
+- [ ] upload files to correct folder
+- [ ] delete file button
+- [ ] allows other files, not just images.
