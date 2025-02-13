@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload, ChevronRight } from "lucide-react";
+import { ChevronRight, FolderPlus } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { FileRow, FolderRow } from "./file-row";
 import type { files_table, folders_table } from "~/server/db/schema";
@@ -63,15 +63,21 @@ export default function GoogleDriveClone(props: {
             ))}
           </ul>
         </div>
-        <UploadButton
-          endpoint="driveUploader"
-          onClientUploadComplete={() => {
-            navigate.refresh();
-          }}
-          input={{
-            folderId: props.currentFolderId,
-          }}
-        />
+        <div className="mt-4 flex items-center justify-between gap-2">
+          <Button variant="ghost">
+            <FolderPlus />
+            New Folder
+          </Button>
+          <UploadButton
+            endpoint="driveUploader"
+            onClientUploadComplete={() => {
+              navigate.refresh();
+            }}
+            input={{
+              folderId: props.currentFolderId,
+            }}
+          />
+        </div>
       </div>
     </main>
   );
