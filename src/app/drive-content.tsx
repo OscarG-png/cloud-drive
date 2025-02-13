@@ -5,15 +5,15 @@ import { Button } from "~/components/ui/button";
 import { FileRow, FolderRow } from "./file-row";
 import type { files_table, folders_table } from "~/server/db/schema";
 import Link from "next/link";
-
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
 }) {
-  const handleUpload = () => {
-    alert("Upload functionality would be implemented here");
-  };
+  // const handleUpload = () => {
+  //   alert("Upload functionality would be implemented here");
+  // };
 
   return (
     <main className="min-h-screen bg-gray-900 p-8 text-gray-100">
@@ -35,13 +35,14 @@ export default function GoogleDriveClone(props: {
               </div>
             ))}
           </div>
-          <Button
-            onClick={handleUpload}
-            className="bg-blue-600 text-white hover:bg-blue-700"
-          >
-            <Upload className="mr-2" size={20} />
-            Upload
-          </Button>
+          <div>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
         <div className="rounded-lg bg-gray-800 shadow-xl">
           <div className="border-b border-gray-700 px-6 py-4">
