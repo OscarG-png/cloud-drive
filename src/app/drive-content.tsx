@@ -6,9 +6,9 @@ import { FileRow, FolderRow } from "./file-row";
 import type { files_table, folders_table } from "~/server/db/schema";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-import { UploadButton } from "~/components/uploadthing";
 import { useRouter } from "next/navigation";
-
+import { UploadButton } from "~/components/uploadthing";
+import { db } from "~/server/db";
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];

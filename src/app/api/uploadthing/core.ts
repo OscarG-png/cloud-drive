@@ -14,8 +14,8 @@ export const ourFileRouter = {
        * For full list of options and defaults, see the File Route API reference
        * @see https://docs.uploadthing.com/file-routes#route-config
        */
-      maxFileSize: "16MB",
-      maxFileCount: 10,
+      maxFileSize: "8MB",
+      maxFileCount: 5,
     },
   })
     .input(
@@ -27,10 +27,13 @@ export const ourFileRouter = {
     .middleware(async ({ input }) => {
       // This code runs on your server before upload
       const user = await auth();
-
       // If you throw, the user will not be able to upload
       // eslint-disable-next-line @typescript-eslint/only-throw-error
       if (!user.userId) throw new UploadThingError("Unauthorized");
+
+      if (input.folderId === 1) {
+        return { userId: user.userId, parentId: input.folderId };
+      }
 
       const folder = await QUERIES.getFolderById(input.folderId);
 
