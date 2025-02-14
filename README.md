@@ -15,9 +15,10 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] set up datamodels
 - [x] move folder state to url
 - [x] set up folder navigation
-- [ ] set up auth
-- [ ] set up real homepage
-
-## notes
-
-minimized data access layer
+- [x] set up auth
+- [x] add ownership of files and folders
+- [x] upload files to correct folder
+- [x] allows other files, not just images.
+- [ ] delete file button
+- [ ] analytics
+- [ ] set up real homepage.
