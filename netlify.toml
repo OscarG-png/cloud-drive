@@ -1,3 +1,6 @@
+[build.environment]
+  COREPACK_SKIP_KEY_VERIFY = "true"
+  NODE_VERSION = "18.20.6"
 [[redirects]]
   from = "/ingest/static/*"
   to = "https://us-assets.i.posthog.com/static/:splat"
