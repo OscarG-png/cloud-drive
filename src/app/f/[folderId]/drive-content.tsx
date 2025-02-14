@@ -8,7 +8,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
-import { db } from "~/server/db";
+
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];

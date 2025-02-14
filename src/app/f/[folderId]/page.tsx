@@ -1,4 +1,4 @@
-import DriveContent from "~/app/drive-content";
+import DriveContent from "./drive-content";
 import { QUERIES } from "~/server/db/queries";
 
 export default async function DriveClone(props: {
