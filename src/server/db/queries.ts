@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "~/server/db";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import {
   files_table as filesSchema,
   folders_table as foldersSchema,
@@ -28,13 +28,15 @@ export const QUERIES = {
     return db
       .select()
       .from(foldersSchema)
-      .where(eq(foldersSchema.parent, folderId));
+      .where(eq(foldersSchema.parent, folderId))
+      .orderBy(desc(foldersSchema.createdAt));
   },
   getFiles: function (folderId: number) {
     return db
       .select()
       .from(filesSchema)
-      .where(eq(filesSchema.parent, folderId));
+      .where(eq(filesSchema.parent, folderId))
+      .orderBy(desc(filesSchema.createdAt));
   },
   getFolderById: async function (folderId: number) {
     const folder = await db
