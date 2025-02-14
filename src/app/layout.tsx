@@ -16,11 +16,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-      <PostHogProvider>
-        <html lang="en" className={`${GeistSans.variable}`}>
-          <body>{children}</body>
-        </html>
-      </PostHogProvider>
+      <html lang="en" className={`${GeistSans.variable}`}>
+        <body>
+          <PostHogProvider>{children}</PostHogProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
