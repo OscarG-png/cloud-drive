@@ -27,4 +27,5 @@ export async function deleteFile(fileId: number, fileKey: string) {
   c.set("force-refresh", JSON.stringify(Math.random()));
 
   await utapi.deleteFiles(fileKey);
+  return { success: true };
 }
