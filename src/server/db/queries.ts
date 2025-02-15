@@ -53,6 +53,7 @@ export const MUTATIONS = {
       name: string;
       size: number;
       url: string;
+      fileKey: string;
       parent: number;
     };
     userId: string;
