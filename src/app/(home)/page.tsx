@@ -39,7 +39,7 @@ export default function HomePage() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section className="flex w-full items-center justify-center py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -69,7 +69,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="flex w-full items-center justify-center py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               <div className="flex flex-col items-center space-y-4 text-center">
