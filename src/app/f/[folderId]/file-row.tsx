@@ -4,8 +4,22 @@ import { Button } from "~/components/ui/button";
 import { deleteFile } from "~/server/actions";
 import type { files_table, folders_table } from "~/server/db/schema";
 
+function formatFileSize(bytes: number): string {
+  if (bytes === 0) {
+    return "0 Bytes";
+  }
+
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+}
+
 export function FileRow(props: { file: typeof files_table.$inferSelect }) {
   const { file } = props;
+  const formattedSize = formatFileSize(file.size);
   return (
     <li
       key={file.id}
@@ -22,7 +36,7 @@ export function FileRow(props: { file: typeof files_table.$inferSelect }) {
             {file.name}
           </Link>
         </div>
-        <div className="col-span-3 text-gray-400">{file.size}</div>
+        <div className="col-span-3 text-gray-400">{formattedSize}</div>
         <div className="col-span-2 text-gray-400">{"file"}</div>
         <div className="col-span-1">
           <Button
@@ -60,8 +74,8 @@ export function FolderRow(props: {
             {folder.name}
           </Link>
         </div>
-        <div className="col-span-3 text-gray-400">{"folder"}</div>
         <div className="col-span-3 text-gray-400">{"--"}</div>
+        <div className="col-span-3 text-gray-400">{"folder"}</div>
       </div>
     </li>
   );

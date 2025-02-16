@@ -9,6 +9,7 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
 import { createFolder } from "~/server/actions";
+
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
@@ -22,7 +23,7 @@ export default function GoogleDriveClone(props: {
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center">
-            <Link href="1" className="mr-2 text-gray-300 hover:text-white">
+            <Link href="/drive" className="mr-2 text-gray-300 hover:text-white">
               My Drive
             </Link>
             {props.parents.map((folder) => (
