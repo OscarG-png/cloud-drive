@@ -2,7 +2,7 @@
 
 import { db } from "~/server/db";
 import { eq, and } from "drizzle-orm";
-import { files_table } from "~/server/db/schema";
+import { files_table, folders_table } from "~/server/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { UTApi } from "uploadthing/server";
 import { cookies } from "next/headers";
@@ -27,5 +27,23 @@ export async function deleteFile(fileId: number, fileKey: string) {
   c.set("force-refresh", JSON.stringify(Math.random()));
 
   await utapi.deleteFiles(fileKey);
+  return { success: true };
+}
+
+export async function createFolder(newFolder: {
+  name: string;
+  parentId: number;
+}) {
+  const session = await auth();
+  if (!session.userId) {
+    return { error: "Unauthorized" };
+  }
+
+  await db.insert(folders_table).values({
+    name: newFolder.name,
+    parent: newFolder.parentId,
+    ownerId: session.userId,
+  });
+
   return { success: true };
 }
