@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Cloud, Lock, Share2, Zap } from "lucide-react";
-
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { Button } from "~/components/ui/button";
 
 export default function HomePage() {
@@ -52,19 +53,31 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-black hover:bg-gray-200"
+                <form
+                  action={async () => {
+                    "use server";
+                    const session = await auth();
+                    if (!session.userId) {
+                      return redirect("/login");
+                    }
+                    return redirect("/drive");
+                  }}
                 >
-                  {"Let's Get Started"}
-                </Button>
-                <Button
+                  <Button
+                    size="lg"
+                    type="submit"
+                    className="bg-white text-black hover:bg-gray-200"
+                  >
+                    {"Let's Get Started"}
+                  </Button>
+                </form>
+                {/* <Button
                   variant="outline"
                   size="lg"
                   className="border-white bg-white text-black hover:bg-gray-200"
                 >
                   Learn More
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
