@@ -22,4 +22,10 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] allows other files, not just images.
 - [x] analytics
 - [x] delete file button
-- [ ] set up real homepage.
+- [x] set up real homepage.
+- [ ] folder creation
+- [ ] folder renaming
+
+## ideas
+
+change the folder and file display to use shadcn data (tables)[https://ui.shadcn.com/docs/components/data-table]

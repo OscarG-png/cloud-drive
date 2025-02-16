@@ -34,7 +34,7 @@ export default function HomePage() {
                   type="submit"
                   className="bg-white text-black hover:bg-gray-200"
                 >
-                  {"Let's Get Started"}
+                  {"Let's get started"}
                 </Button>
               </form>
             </div>

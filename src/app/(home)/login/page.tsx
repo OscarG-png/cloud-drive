@@ -1,5 +1,6 @@
 import { Lock, Share2, Zap } from "lucide-react";
 import { SignInButton } from "@clerk/nextjs";
+import { Button } from "~/components/ui/button";
 
 export default function LoginPage() {
   return (
@@ -17,7 +18,14 @@ export default function LoginPage() {
               </p>
             </div>
             <div className="space-x-4">
-              <SignInButton forceRedirectUrl="/drive" />
+              <SignInButton forceRedirectUrl="/drive">
+                <Button
+                  size="lg"
+                  className="bg-white text-black hover:bg-gray-200"
+                >
+                  Sign in
+                </Button>
+              </SignInButton>
             </div>
           </div>
         </div>
