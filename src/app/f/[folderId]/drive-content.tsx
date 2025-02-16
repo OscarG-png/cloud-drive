@@ -71,6 +71,18 @@ export default function GoogleDriveClone(props: {
           </Button>
           <UploadButton
             endpoint="driveUploader"
+            appearance={{
+              button: {
+                backgroundColor: "transparent",
+                color: "white",
+                padding: "8px 32px",
+                height: "40px",
+                borderRadius: "6px",
+                fontSize: "14px",
+                fontWeight: "500",
+                textWrap: "nowrap",
+              },
+            }}
             onClientUploadComplete={() => {
               navigate.refresh();
             }}
