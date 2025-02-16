@@ -1,9 +1,7 @@
 import { Lock, Share2, Zap } from "lucide-react";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { Button } from "~/components/ui/button";
+import { SignInButton } from "@clerk/nextjs";
 
-export default function HomePage() {
+export default function LoginPage() {
   return (
     <>
       <section className="flex w-full items-center justify-center py-12 md:py-24 lg:py-32 xl:py-48">
@@ -19,24 +17,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="space-x-4">
-              <form
-                action={async () => {
-                  "use server";
-                  const session = await auth();
-                  if (!session.userId) {
-                    return redirect("/login");
-                  }
-                  return redirect("/drive");
-                }}
-              >
-                <Button
-                  size="lg"
-                  type="submit"
-                  className="bg-white text-black hover:bg-gray-200"
-                >
-                  {"Let's Get Started"}
-                </Button>
-              </form>
+              <SignInButton forceRedirectUrl="/drive" />
             </div>
           </div>
         </div>
