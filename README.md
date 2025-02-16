@@ -8,6 +8,7 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - Tailwind
 - Shadcn
 - SingleStore
+- Posthog
 
 ## TODO list:
 
@@ -19,6 +20,12 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] add ownership of files and folders
 - [x] upload files to correct folder
 - [x] allows other files, not just images.
-- [ ] delete file button
-- [ ] analytics
-- [ ] set up real homepage.
+- [x] analytics
+- [x] delete file button
+- [x] set up real homepage.
+- [ ] folder creation
+- [ ] folder renaming
+
+## ideas
+
+change the folder and file display to use shadcn data (tables)[https://ui.shadcn.com/docs/components/data-table]

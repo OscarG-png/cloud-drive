@@ -6,8 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { PostHogProvider } from "./_providers/posthog-providers";
 
 export const metadata: Metadata = {
-  title: "Drive Clone",
-  description: "A simple drive clone",
+  title: "Turbo Drive",
+  description: "A simple cloud drive",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

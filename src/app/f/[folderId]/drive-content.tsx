@@ -8,7 +8,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
-
+import { createFolder } from "~/server/actions";
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
@@ -50,8 +50,9 @@ export default function GoogleDriveClone(props: {
           <div className="border-b border-gray-700 px-6 py-4">
             <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
               <div className="col-span-6">Name</div>
-              <div className="col-span-3">Type</div>
               <div className="col-span-3">Size</div>
+              <div className="col-span-2">Type</div>
+              <div className="col-span-1"></div>
             </div>
           </div>
           <ul>
@@ -64,12 +65,36 @@ export default function GoogleDriveClone(props: {
           </ul>
         </div>
         <div className="mt-4 flex items-center justify-between gap-2">
-          <Button variant="ghost">
-            <FolderPlus />
-            New Folder
-          </Button>
+          <form
+            action={async () => {
+              const folderName = prompt("Enter folder name");
+              if (!folderName) return;
+              await createFolder({
+                name: folderName,
+                parentId: props.currentFolderId,
+              });
+              navigate.refresh();
+            }}
+          >
+            <Button variant="ghost">
+              <FolderPlus />
+              New Folder
+            </Button>
+          </form>
           <UploadButton
             endpoint="driveUploader"
+            appearance={{
+              button: {
+                backgroundColor: "transparent",
+                color: "white",
+                padding: "8px 32px",
+                height: "40px",
+                borderRadius: "6px",
+                fontSize: "14px",
+                fontWeight: "500",
+                textWrap: "nowrap",
+              },
+            }}
             onClientUploadComplete={() => {
               navigate.refresh();
             }}

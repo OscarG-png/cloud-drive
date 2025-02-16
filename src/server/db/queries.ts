@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "~/server/db";
-import { eq } from "drizzle-orm";
+import { eq, desc, and, isNull } from "drizzle-orm";
 import {
   files_table as filesSchema,
   folders_table as foldersSchema,
@@ -28,13 +28,15 @@ export const QUERIES = {
     return db
       .select()
       .from(foldersSchema)
-      .where(eq(foldersSchema.parent, folderId));
+      .where(eq(foldersSchema.parent, folderId))
+      .orderBy(desc(foldersSchema.createdAt));
   },
   getFiles: function (folderId: number) {
     return db
       .select()
       .from(filesSchema)
-      .where(eq(filesSchema.parent, folderId));
+      .where(eq(filesSchema.parent, folderId))
+      .orderBy(desc(filesSchema.createdAt));
   },
   getFolderById: async function (folderId: number) {
     const folder = await db
@@ -43,14 +45,54 @@ export const QUERIES = {
       .where(eq(foldersSchema.id, folderId));
     return folder[0];
   },
+
+  getRootFolderForUser: async function (userId: string) {
+    const rootFolder = await db
+      .select()
+      .from(foldersSchema)
+      .where(
+        and(eq(foldersSchema.ownerId, userId), isNull(foldersSchema.parent)),
+      );
+    return rootFolder[0];
+  },
 };
 
 export const MUTATIONS = {
+  onBoardUser: async function (userId: string) {
+    const rootFolder = await db
+      .insert(foldersSchema)
+      .values({
+        name: "Root",
+        parent: null,
+        ownerId: userId,
+      })
+      .$returningId();
+    const rootFolderId = rootFolder[0]!.id;
+    await db.insert(foldersSchema).values([
+      {
+        name: "Trash",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+      {
+        name: "Shared",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+      {
+        name: "Documents",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+    ]);
+    return rootFolderId;
+  },
   createFile: async function (input: {
     file: {
       name: string;
       size: number;
       url: string;
+      fileKey: string;
       parent: number;
     };
     userId: string;
