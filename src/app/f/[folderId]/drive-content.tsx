@@ -66,18 +66,10 @@ export default function GoogleDriveClone(props: {
             </TableHeader>
             <TableBody>
               {props.folders.map((folder) => (
-                <TableRow key={folder.id}>
-                  <TableCell>{folder.name}</TableCell>
-                  <TableCell>{"--"}</TableCell>
-                  <TableCell>{"Folder"}</TableCell>
-                </TableRow>
+                <FolderRow key={folder.id} folder={folder} />
               ))}
               {props.files.map((file) => (
-                <TableRow key={file.id}>
-                  <TableCell>{file.name}</TableCell>
-                  <TableCell>{file.size}</TableCell>
-                  <TableCell>{"File"}</TableCell>
-                </TableRow>
+                <FileRow key={file.id} file={file} />
               ))}
             </TableBody>
           </Table>
