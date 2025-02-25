@@ -1,6 +1,7 @@
 # Drive Clone
 
 Hello, This is another personal procect i'm working on, it's a cloud storage cloud. I'll be updating this read me as I go.
+This project is currently deployed on netlify, feel free to check it out [here!](subtle-chimera-ebfe30.netlify.app)
 
 ## Tech I'm using
 
@@ -9,6 +10,7 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - Shadcn
 - SingleStore
 - Posthog
+- Netlify
 
 ## TODO list:
 
@@ -23,9 +25,11 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] analytics
 - [x] delete file button
 - [x] set up real homepage.
-- [ ] folder creation
+- [x] folder creation
 - [ ] folder renaming
+- [ ] folder deletion
+- [ ] multi file/folder deletion?
 
 ## ideas
 
-change the folder and file display to use shadcn data (tables)[https://ui.shadcn.com/docs/components/data-table]
+change the folder and file display to use shadcn data [tables](https://ui.shadcn.com/docs/components/data-table)
