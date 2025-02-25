@@ -29,6 +29,7 @@ This project is currently deployed on netlify, feel free to check it out [here!]
 - [ ] folder renaming
 - [ ] folder deletion
 - [ ] multi file/folder deletion?
+- [ ] remove root from breadcrumbs?
 
 ## ideas
 

@@ -12,7 +12,6 @@ import { createFolder } from "~/server/actions";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
