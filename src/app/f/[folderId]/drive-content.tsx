@@ -9,6 +9,14 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
 import { createFolder } from "~/server/actions";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
 
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
@@ -48,22 +56,31 @@ export default function GoogleDriveClone(props: {
           </div>
         </div>
         <div className="rounded-lg bg-gray-800 shadow-xl">
-          <div className="border-b border-gray-700 px-6 py-4">
-            <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
-              <div className="col-span-6">Name</div>
-              <div className="col-span-3">Size</div>
-              <div className="col-span-2">Type</div>
-              <div className="col-span-1"></div>
-            </div>
-          </div>
-          <ul>
-            {props.folders.map((folder) => (
-              <FolderRow key={folder.id} folder={folder} />
-            ))}
-            {props.files.map((file) => (
-              <FileRow key={file.id} file={file} />
-            ))}
-          </ul>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Size</TableHead>
+                <TableHead>Type</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {props.folders.map((folder) => (
+                <TableRow key={folder.id}>
+                  <TableCell>{folder.name}</TableCell>
+                  <TableCell>{"--"}</TableCell>
+                  <TableCell>{"Folder"}</TableCell>
+                </TableRow>
+              ))}
+              {props.files.map((file) => (
+                <TableRow key={file.id}>
+                  <TableCell>{file.name}</TableCell>
+                  <TableCell>{file.size}</TableCell>
+                  <TableCell>{"File"}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
         <div className="mt-4 flex items-center justify-between gap-2">
           <form
