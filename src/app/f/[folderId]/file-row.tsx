@@ -24,7 +24,16 @@ export function FileRow(props: { file: typeof files_table.$inferSelect }) {
   const formattedSize = formatFileSize(file.size);
   return (
     <TableRow key={file.id}>
-      <TableCell>{file.name}</TableCell>
+      <TableCell>
+        <Link
+          href={file.url}
+          target="_blank"
+          className="flex items-center gap-2"
+        >
+          <FileIcon />
+          {file.name}
+        </Link>
+      </TableCell>
       <TableCell>{formattedSize}</TableCell>
       <TableCell>{"File"}</TableCell>
     </TableRow>
@@ -37,7 +46,12 @@ export function FolderRow(props: {
   const { folder } = props;
   return (
     <TableRow key={folder.id}>
-      <TableCell>{folder.name}</TableCell>
+      <TableCell>
+        <Link href={`/f/${folder.id}`} className="flex items-center gap-2">
+          <Folder />
+          {folder.name}
+        </Link>
+      </TableCell>
       <TableCell>{"--"}</TableCell>
       <TableCell>{"Folder"}</TableCell>
     </TableRow>
