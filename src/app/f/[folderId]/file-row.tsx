@@ -1,6 +1,5 @@
-import { Folder, FileIcon, Trash2Icon } from "lucide-react";
+import { Folder, FileIcon } from "lucide-react";
 import Link from "next/link";
-import { Button } from "~/components/ui/button";
 import { TableRow } from "~/components/ui/table";
 import { TableCell } from "~/components/ui/table";
 import { deleteFile } from "~/server/actions";
