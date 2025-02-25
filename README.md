@@ -23,9 +23,11 @@ Hello, This is another personal procect i'm working on, it's a cloud storage clo
 - [x] analytics
 - [x] delete file button
 - [x] set up real homepage.
-- [ ] folder creation
+- [x] folder creation
 - [ ] folder renaming
+- [ ] folder deletion
+- [ ] multi file/folder deletion?
 
 ## ideas
 
-change the folder and file display to use shadcn data (tables)[https://ui.shadcn.com/docs/components/data-table]
+change the folder and file display to use shadcn data [tables](https://ui.shadcn.com/docs/components/data-table)
