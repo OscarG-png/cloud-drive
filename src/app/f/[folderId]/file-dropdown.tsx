@@ -1,7 +1,7 @@
 import { Button } from "~/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
-import { deleteFile } from "~/server/actions";
+import { deleteFile, deleteFolder } from "~/server/actions";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,6 +66,10 @@ function FileDropdown(props: { file: File }) {
 
 function FolderDropdown(props: { folder: Folder }) {
   const { folder } = props;
+
+  async function handleFolderDelete() {
+    await deleteFolder(folder.id);
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -80,7 +84,9 @@ function FolderDropdown(props: { folder: Folder }) {
         {/* <DropdownMenuItem>{"Download"}</DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem> */}
-        <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
+        <DropdownMenuItem className="text-red-700" onClick={handleFolderDelete}>
+          {"Delete"}
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
