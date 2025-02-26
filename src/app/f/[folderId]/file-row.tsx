@@ -35,7 +35,7 @@ export function FileRow(props: { file: typeof files_table.$inferSelect }) {
       <TableCell>{formattedSize}</TableCell>
       <TableCell>{"File"}</TableCell>
       <TableCell>
-        <DropDownMenu type="file" id={file.id} />
+        <DropDownMenu type="file" data={file} />
       </TableCell>
     </TableRow>
   );
@@ -56,7 +56,7 @@ export function FolderRow(props: {
       <TableCell>{"--"}</TableCell>
       <TableCell>{"Folder"}</TableCell>
       <TableCell>
-        <DropDownMenu type="folder" id={folder.id} />
+        <DropDownMenu type="folder" data={folder} />
       </TableCell>
     </TableRow>
   );

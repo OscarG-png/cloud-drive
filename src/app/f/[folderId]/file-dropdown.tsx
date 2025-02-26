@@ -1,5 +1,7 @@
 import { Button } from "~/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
+import { deleteFile } from "~/server/actions";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,18 +9,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import type { files_table, folders_table } from "~/server/db/schema";
+
+type Folder = typeof folders_table.$inferSelect;
+type File = typeof files_table.$inferSelect;
 
 export default function DropDownMenu(props: {
   type: "file" | "folder";
-  id: number;
+  data: File | Folder;
 }) {
   if (props.type === "file") {
-    return <FileDropdown />;
+    return <FileDropdown file={props.data as File} />;
   }
-  return <FolderDropdown />;
+  return <FolderDropdown folder={props.data as Folder} />;
 }
 
-function FileDropdown() {
+function FileDropdown(props: { file: File }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,7 +35,11 @@ function FileDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>{"Download"}</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={props.file.url} target="-blank">
+            {"Download"}
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem>
         <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
@@ -38,7 +48,7 @@ function FileDropdown() {
   );
 }
 
-function FolderDropdown() {
+function FolderDropdown(props: { folder: Folder }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,9 +59,9 @@ function FolderDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>{"Download"}</DropdownMenuItem>
+        {/* <DropdownMenuItem>{"Download"}</DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
-        <DropdownMenuItem>{"Move File"}</DropdownMenuItem>
+        <DropdownMenuItem>{"Move File"}</DropdownMenuItem> */}
         <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
