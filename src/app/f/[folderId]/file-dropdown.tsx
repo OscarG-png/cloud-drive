@@ -27,12 +27,12 @@ function FileDropdown() {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem>{"Download"}</DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem>
-        <DropdownMenuItem>{"Delete"}</DropdownMenuItem>
+        <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -47,12 +47,12 @@ function FolderDropdown() {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem>{"Download"}</DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem>
-        <DropdownMenuItem>{"Delete"}</DropdownMenuItem>
+        <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
