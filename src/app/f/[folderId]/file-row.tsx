@@ -2,9 +2,8 @@ import { Folder, FileIcon } from "lucide-react";
 import Link from "next/link";
 import { TableRow } from "~/components/ui/table";
 import { TableCell } from "~/components/ui/table";
-import { deleteFile } from "~/server/actions";
 import type { files_table, folders_table } from "~/server/db/schema";
-
+import DropDownMenu from "./file-dropdown";
 function formatFileSize(bytes: number): string {
   if (bytes === 0) {
     return "0 Bytes";
@@ -35,6 +34,9 @@ export function FileRow(props: { file: typeof files_table.$inferSelect }) {
       </TableCell>
       <TableCell>{formattedSize}</TableCell>
       <TableCell>{"File"}</TableCell>
+      <TableCell>
+        <DropDownMenu type="file" id={file.id} />
+      </TableCell>
     </TableRow>
   );
 }
@@ -53,6 +55,9 @@ export function FolderRow(props: {
       </TableCell>
       <TableCell>{"--"}</TableCell>
       <TableCell>{"Folder"}</TableCell>
+      <TableCell>
+        <DropDownMenu type="folder" id={folder.id} />
+      </TableCell>
     </TableRow>
   );
 }
