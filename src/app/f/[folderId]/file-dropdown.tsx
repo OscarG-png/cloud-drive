@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "~/components/ui/dropdown-menu";
 import type { files_table, folders_table } from "~/server/db/schema";
 
@@ -25,6 +26,16 @@ export default function DropDownMenu(props: {
 }
 
 function FileDropdown(props: { file: File }) {
+  const { file } = props;
+
+  async function handleDelete() {
+    await deleteFile(file.id, file.fileKey);
+  }
+
+  async function handleCopyLink() {
+    await navigator.clipboard.writeText(file.url);
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,20 +46,26 @@ function FileDropdown(props: { file: File }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuSeparator className="!bg-black" />
         <DropdownMenuItem>
           <Link href={props.file.url} target="-blank">
             {"Download"}
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
+        <DropdownMenuItem onClick={handleCopyLink}>
+          {"Copy Link"}
+        </DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem>
-        <DropdownMenuItem className="text-red-700">{"Delete"}</DropdownMenuItem>
+        <DropdownMenuItem className="text-red-700" onClick={handleDelete}>
+          {"Delete"}
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
 function FolderDropdown(props: { folder: Folder }) {
+  const { folder } = props;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -59,6 +76,7 @@ function FolderDropdown(props: { folder: Folder }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="!border-black bg-gray-500">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuSeparator className="!bg-black" />
         {/* <DropdownMenuItem>{"Download"}</DropdownMenuItem>
         <DropdownMenuItem>{"Copy Link"}</DropdownMenuItem>
         <DropdownMenuItem>{"Move File"}</DropdownMenuItem> */}
