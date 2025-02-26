@@ -9,6 +9,7 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
 import { createFolder } from "~/server/actions";
+import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -16,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-
+import { columns } from "./columns";
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
@@ -24,6 +25,18 @@ export default function GoogleDriveClone(props: {
   currentFolderId: number;
 }) {
   const navigate = useRouter();
+
+  const filesTable = useReactTable({
+    data: props.files,
+    columns: columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  const foldersTable = useReactTable({
+    data: props.folders,
+    columns: columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
 
   return (
     <main className="min-h-screen bg-gray-900 p-8 text-gray-100">
@@ -64,11 +77,14 @@ export default function GoogleDriveClone(props: {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {props.folders.map((folder) => (
-                <FolderRow key={folder.id} folder={folder} />
+              {foldersTable.getRowModel().rows.map((row) => (
+                <FolderRow key={row.id} folder={row.original} />
               ))}
-              {props.files.map((file) => (
-                <FileRow key={file.id} file={file} />
+              {filesTable.getRowModel().rows.map((row) => (
+                <FileRow
+                  key={row.id}
+                  file={row.original as typeof files_table.$inferSelect}
+                />
               ))}
             </TableBody>
           </Table>
