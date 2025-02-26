@@ -4,10 +4,11 @@ import type { ColumnDef } from "@tanstack/react-table";
 import type { files_table, folders_table } from "~/server/db/schema";
 import DropDownMenu from "./file-dropdown";
 
+type File = typeof files_table.$inferSelect;
+type Folder = typeof folders_table.$inferSelect;
+
 // Union type for data that can be either a file or folder
-type DriveItem =
-  | typeof files_table.$inferSelect
-  | typeof folders_table.$inferSelect;
+type DriveItem = File | Folder;
 
 export const columns: ColumnDef<DriveItem>[] = [
   {
@@ -35,9 +36,9 @@ export const columns: ColumnDef<DriveItem>[] = [
     cell: ({ row }) => {
       const item = row.original;
       if ("fileKey" in item) {
-        return <DropDownMenu type="file" id={item.id} />;
+        return <DropDownMenu type="file" data={item} />;
       }
-      return <DropDownMenu type="folder" id={item.id} />;
+      return <DropDownMenu type="folder" data={item} />;
     },
   },
 ];
