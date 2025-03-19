@@ -9,13 +9,9 @@ export default function LoginPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                Your Files, Anywhere, Anytime
+              <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                First time logging in? Let&apos;s fix that
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl">
-                Drive Clone is the secure, fast, and collaborative cloud storage
-                solution for all your needs.
-              </p>
             </div>
             <div className="space-x-4">
               <SignInButton forceRedirectUrl="/drive">
