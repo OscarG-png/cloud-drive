@@ -9,6 +9,19 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/components/uploadthing";
 import { createFolder } from "~/server/actions";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+import { columns } from "./columns";
 
 export default function GoogleDriveClone(props: {
   files: (typeof files_table.$inferSelect)[];
@@ -17,6 +30,18 @@ export default function GoogleDriveClone(props: {
   currentFolderId: number;
 }) {
   const navigate = useRouter();
+
+  const filesTable = useReactTable({
+    data: props.files,
+    columns: columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  const foldersTable = useReactTable({
+    data: props.folders,
+    columns: columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
 
   return (
     <main className="min-h-screen bg-gray-900 p-8 text-gray-100">
@@ -48,22 +73,35 @@ export default function GoogleDriveClone(props: {
           </div>
         </div>
         <div className="rounded-lg bg-gray-800 shadow-xl">
-          <div className="border-b border-gray-700 px-6 py-4">
-            <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
-              <div className="col-span-6">Name</div>
-              <div className="col-span-3">Size</div>
-              <div className="col-span-2">Type</div>
-              <div className="col-span-1"></div>
-            </div>
-          </div>
-          <ul>
-            {props.folders.map((folder) => (
-              <FolderRow key={folder.id} folder={folder} />
-            ))}
-            {props.files.map((file) => (
-              <FileRow key={file.id} file={file} />
-            ))}
-          </ul>
+          <Table>
+            <TableHeader>
+              {foldersTable.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead key={header.id} className="text-white">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {foldersTable.getRowModel().rows.map((row) => (
+                <FolderRow key={row.id} folder={row.original} />
+              ))}
+              {filesTable.getRowModel().rows.map((row) => (
+                <FileRow
+                  key={row.id}
+                  file={row.original as typeof files_table.$inferSelect}
+                />
+              ))}
+            </TableBody>
+          </Table>
         </div>
         <div className="mt-4 flex items-center justify-between gap-2">
           <form

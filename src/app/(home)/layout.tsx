@@ -9,32 +9,32 @@ export default function HomeLayout({
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-black to-neutral-800 text-white">
       <header className="flex h-14 items-center px-4 lg:px-6">
-        <Link className="flex items-center justify-center" href="#">
+        <Link className="flex items-center justify-center" href="/">
           <Cloud className="h-6 w-6" />
           <span className="ml-2 text-2xl font-bold">Turbo Drive</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link
             className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
+            href="/coming-soon"
           >
             Features
           </Link>
           <Link
             className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
+            href="/coming-soon"
           >
             Pricing
           </Link>
           <Link
             className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
+            href="/coming-soon"
           >
             About
           </Link>
           <Link
             className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#"
+            href="/coming-soon"
           >
             Contact
           </Link>
