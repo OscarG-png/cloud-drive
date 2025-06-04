@@ -1,7 +1,7 @@
 # Drive Clone
 
 Hello, This is another personal procect i'm working on, it's a cloud storage cloud. I'll be updating this read me as I go.
-This project is currently deployed on netlify, feel free to check it out [here!](subtle-chimera-ebfe30.netlify.app)
+This project is currently deployed on netlify, feel free to check it out [here!](https://subtle-chimera-ebfe30.netlify.app/)
 
 ## Tech I'm using
 
